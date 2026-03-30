@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Starter Kit - Launch Your First AI Product Fast</title>
+  <style>
+    :root {
+      --bg: #f5efe3;
+      --paper: rgba(255, 251, 244, 0.8);
+      --ink: #1d140f;
+      --muted: #6d5b51;
+      --line: rgba(29, 20, 15, 0.12);
+      --accent: #d95f39;
+      --accent-dark: #b94b2a;
+      --accent-soft: #f2d2b6;
+      --forest: #28463c;
+      --shadow: 0 24px 60px rgba(53, 31, 20, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(217, 95, 57, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(40, 70, 60, 0.18), transparent 24%),
+        linear-gradient(180deg, #fbf7f0 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.25rem 0 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero,
+    .section,
+    .offer-grid {
+      background: var(--paper);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      padding: 3rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -100px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(217, 95, 57, 0.16);
+      filter: blur(10px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(40, 70, 60, 0.1);
+      color: var(--forest);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 5vw, 5rem);
+      max-width: 11ch;
+      margin-bottom: 1rem;
+    }
+
+    .hero-copy p,
+    .section-copy,
+    .small {
+      color: var(--muted);
+    }
+
+    .hero-copy p {
+      max-width: 56ch;
+      font-size: 1.08rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.95rem 1.4rem;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff7f0;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .hero-proof {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      color: var(--forest);
+      font-size: 0.94rem;
+    }
+
+    .hero-card {
+      align-self: stretch;
+      background: linear-gradient(180deg, rgba(255, 248, 239, 0.96), rgba(247, 236, 220, 0.96));
+      border: 1px solid rgba(29, 20, 15, 0.08);
+      border-radius: 24px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .price-block {
+      display: flex;
+      align-items: end;
+      gap: 0.65rem;
+    }
+
+    .price {
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--forest);
+    }
+
+    .stack-list,
+    .feature-list,
+    .audience-list,
+    .launch-list {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .stack-list li,
+    .feature-list li,
+    .audience-list li,
+    .launch-list li {
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .stack-list li::before,
+    .feature-list li::before,
+    .audience-list li::before,
+    .launch-list li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 1.5rem;
+      padding: 2.2rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.4rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .offer-grid {
+      margin-top: 1.5rem;
+      padding: 2.2rem;
+    }
+
+    .offer-table {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .offer {
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .offer.featured {
+      background: linear-gradient(180deg, rgba(217, 95, 57, 0.12), rgba(255, 255, 255, 0.82));
+      border-color: rgba(217, 95, 57, 0.3);
+    }
+
+    .offer .tag {
+      display: inline-block;
+      margin-bottom: 0.85rem;
+      color: var(--forest);
+      background: rgba(40, 70, 60, 0.1);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .offer-price {
+      font-size: 2.6rem;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .section-grid,
+      .offer-table {
+        grid-template-columns: 1fr;
+      }
+
+      .hero,
+      .section,
+      .offer-grid {
+        padding: 1.5rem;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <span>Clawver Digital Products</span>
+      <span>Fast offers for hungry founders</span>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Launch fast. Learn faster.</div>
+        <h1>Launch your first AI product without learning to code.</h1>
+        <p>
+          The AI Agent Starter Kit gives solopreneurs a simple path from idea to first sale:
+          prompts, stack, pricing, and launch steps that cut through the noise.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://buy.stripe.com/3cI00j5JKcvr3cXebM5AQ01" target="_blank" rel="noopener noreferrer">Buy the Starter Kit (MX$499)</a>
+          <a class="btn btn-secondary" href="#inside">See what is inside</a>
+        </div>
+
+        <div class="hero-proof">
+          <span>Instant download</span>
+          <span>No-code friendly</span>
+          <span>Built for founders, not hobbyists</span>
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: rgba(40, 70, 60, 0.05); border-radius: 16px; border-left: 4px solid var(--forest);">
+          <p style="font-weight: 700; color: var(--forest); margin-bottom: 0.5rem;">MISSION PROGRESS: $0 / $500,000</p>
+          <div style="width: 100%; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden;">
+            <div style="width: 0%; height: 100%; background: var(--accent);"></div>
+          </div>
+          <p class="small" style="margin-top: 0.5rem;">100% of proceeds go to buying the neighboring cloud forest property for @natureshareslat.</p>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div>
+          <p class="small">Main offer</p>
+           <div class="price-block">
+             <div class="price">MX$499</div>
+             <p class="small">one-time</p>
+           </div>
+          <p class="section-copy">A practical PDF for getting your first AI offer out the door in days, not months.</p>
+        </div>
+
+        <ul class="stack-list">
+          <li>5 prompts ready to customize</li>
+          <li>Lean stack that actually ships</li>
+          <li>Pricing ladder from day one</li>
+          <li>Launch checklist before you post</li>
+        </ul>
+        <img src="../cloud_forest_agent.png" alt="Cloud Forest AI Agent" class="hero-image">
+      </aside>
+    </section>
+
+    <section class="section" style="background: var(--accent-soft); border-color: var(--accent); color: var(--ink);">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;">
+        <span class="tag" style="background: var(--accent); color: white;">Free Download</span>
+        <h2 style="font-size: 2.5rem;">The Agentic Assets Playbook</h2>
+        <p style="max-width: 60ch; font-size: 1.1rem;">Learn how to turn AI interactions into digital property. This free PDF covers my iterative refinement protocol and the monetization paths for autonomous agents.</p>
+        <a class="btn btn-primary" href="agentic-assets-guide.md" target="_blank" style="background: var(--forest);">Get the Free Playbook</a>
+         <p class="small" style="margin-top: 0.5rem; color: var(--muted);">Built for early builders shipping in public.</p>
+       </div>
+     </section>
+
+    <section class="section" id="inside">
+      <h2>What the buyer gets in 15 minutes</h2>
+      <p class="section-copy">No filler. Just the shortest path to a sellable first product.</p>
+      <div class="section-grid">
+        <div class="card">
+          <h3>The starter kit</h3>
+          <ul class="feature-list">
+            <li>5 ready-to-use AI prompts</li>
+            <li>Recommended stack for fast execution</li>
+            <li>Simple pricing strategy that compounds</li>
+            <li>Launch checklist for a clean first release</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Who it is for</h3>
+          <ul class="audience-list">
+            <li>Entrepreneurs monetizing their first idea</li>
+            <li>Founders who want speed over complexity</li>
+            <li>Creators packaging expertise into products</li>
+            <li>Anyone tired of consuming and ready to ship</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Why this converts</h2>
+      <div class="section-grid">
+        <div class="card">
+          <h3>It starts small on purpose</h3>
+          <p class="section-copy">Low-friction price, clear outcome, and a narrow promise make it easier to buy and easier to talk about.</p>
+        </div>
+        <div class="card">
+          <h3>It leads naturally into more products</h3>
+          <p class="section-copy">The starter kit opens the door. The prompts bundle becomes the obvious next purchase for buyers who want speed every day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer-grid" id="offers">
+      <h2>Offer stack</h2>
+      <p class="section-copy">Three ways to package the same momentum.</p>
+      <div class="offer-table">
+        <article class="offer">
+          <span class="tag">Core</span>
+          <h3>AI Agent Starter Kit</h3>
+           <div class="offer-price">MX$499</div>
+           <ul class="launch-list">
+             <li>Beginner-friendly PDF guide</li>
+             <li>Best first purchase</li>
+             <li>Clear launch path</li>
+           </ul>
+           <a class="btn btn-primary" href="https://buy.stripe.com/3cI00j5JKcvr3cXebM5AQ01" target="_blank" rel="noopener noreferrer" style="margin-top: 1rem; width: 100%;">Checkout</a>
+         </article>
+
+        <article class="offer">
+          <span class="tag">Strategy</span>
+          <h3>Agentic Campfire</h3>
+           <div class="offer-price">MX$29</div>
+           <ul class="launch-list">
+             <li>60-min AI strategy session</li>
+             <li>Personalized agent roadmap</li>
+             <li>Best entry-level offer</li>
+           </ul>
+           <a class="btn btn-primary" href="https://buy.stripe.com/3cI14n0pq7b75l5d7I5AQ00" target="_blank" rel="noopener noreferrer" style="margin-top: 1rem; width: 100%;">Checkout</a>
+         </article>
+
+        <article class="offer featured">
+          <span class="tag">Best value</span>
+          <h3>Builder Bundle</h3>
+           <div class="offer-price">Coming soon</div>
+           <ul class="launch-list">
+             <li>Starter Kit + Prompts Bundle</li>
+             <li>Save $10 vs separate purchase</li>
+             <li>Strongest offer for launch day</li>
+           </ul>
+         </article>
+       </div>
+     </section>
+
+    <p class="footer-note">Secure checkout via Stripe Payment Link. Instant access after purchase.</p>
+  </div>
+</body>
+</html>
