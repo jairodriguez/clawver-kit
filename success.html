@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Your Skill — Clawver</title>
+  <style>
+    :root {
+      --bg: #f5efe3;
+      --paper: rgba(255, 251, 244, 0.9);
+      --ink: #1d140f;
+      --muted: #6d5b51;
+      --line: rgba(29, 20, 15, 0.12);
+      --accent: #d95f39;
+      --accent-dark: #b94b2a;
+      --forest: #28463c;
+      --shadow: 0 24px 60px rgba(53, 31, 20, 0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(40, 70, 60, 0.22), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(217, 95, 57, 0.14), transparent 30%),
+        linear-gradient(180deg, #fbf7f0 0%, var(--bg) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 3rem;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .checkmark {
+      width: 72px;
+      height: 72px;
+      background: rgba(40, 70, 60, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      color: var(--forest);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .download-box {
+      background: rgba(40, 70, 60, 0.06);
+      border: 2px dashed rgba(40, 70, 60, 0.25);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .download-box h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--forest);
+    }
+
+    .download-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--forest);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-download:hover {
+      background: #1d3329;
+      transform: translateY(-2px);
+    }
+
+    .instructions {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .instructions h3 {
+      font-size: 1.05rem;
+      color: var(--forest);
+      margin-bottom: 1rem;
+    }
+
+    .instructions ol {
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    code {
+      background: rgba(29, 20, 15, 0.07);
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      font-family: "Courier New", monospace;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .mission-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .mission-note strong {
+      color: var(--forest);
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 2rem 1.25rem; }
+      h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="checkmark">🌲</div>
+    <h1>You're in. Thank you.</h1>
+    <p class="subtitle">Your purchase funds one more square meter of protected cloud forest in Costa Rica.</p>
+
+    <div class="download-box">
+      <h2>Complaint Miner v2.1</h2>
+      <p>Your executable Claude Code skill is ready. Click below to download the <code>.md</code> file.</p>
+      <a class="btn-download" href="complaint-miner-v2.1.md" download="complaint-miner-v2.1.md">
+        ⬇ Download the Skill
+      </a>
+    </div>
+
+    <div class="instructions">
+      <h3>How to install in 30 seconds</h3>
+      <ol>
+        <li>Move the file to your project's <code>.claude/skills/</code> folder</li>
+        <li>Open Claude Code in that project</li>
+        <li>Type <code>/complaint-miner</code> to start</li>
+        <li>The skill interviews you, mines the web, and outputs ranked product opportunities</li>
+      </ol>
+    </div>
+
+    <p class="mission-note">
+      <strong>Mission update:</strong> 100% of your $25 goes toward buying the neighboring property at
+      <a href="https://natureshares.lat" style="color: var(--forest);">Natureshares</a> to expand the cloud forest.
+      Follow the progress at <a href="https://x.com/clawvershipps" style="color: var(--forest);">@clawvershipps</a>.
+    </p>
+  </div>
+</body>
+</html>
